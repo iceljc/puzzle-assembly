@@ -69,7 +69,7 @@ class Piece:
 # define board
 class Board:
 
-	def __init__(self, board=None, board_size=None, moves=0, previous=None):
+	def __init__(self, board=None, board_size=None, moves=0):
 
 		if board is None:
 			self.board = [[1,1,1,1,1,1,1],
@@ -85,7 +85,7 @@ class Board:
 			self.board_size = board_size
 		self.hole = Piece(0, 'black', [[0,0]])
 		self.moves = moves
-		self.previous = previous
+		# self.previous = previous
 		# self.placed_puzzle = [] 
 
 	def isGoal(self):
@@ -164,20 +164,20 @@ class Board:
 		else:
 			return self.board == other.board
 
-	def get_previous_states(self):
-		"""
-            return a list of previous states by going up the state space tree
-        """
-		states = [self]
-		prev = self.previous
+	# def get_previous_states(self):
+	# 	"""
+ #            return a list of previous states by going up the state space tree
+ #        """
+	# 	states = [self]
+	# 	prev = self.previous
 
-		while prev is not None:
-			states.append(prev)
-			prev = prev.previous
+	# 	while prev is not None:
+	# 		states.append(prev)
+	# 		prev = prev.previous
 
-		# states.reverse()
+	# 	# states.reverse()
 		
-		return states
+	# 	return states
 
 	
 
