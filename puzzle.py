@@ -72,13 +72,7 @@ class Board:
 	def __init__(self, board=None, board_size=None, moves=0):
 
 		if board is None:
-			self.board = [[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1],
-						[1,1,1,1,1,1,1]]
+			self.board = [[1 for i in range(4)] for j in range(4)]
 			self.board_size = 7
 		else:
 			self.board = board
