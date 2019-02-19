@@ -183,8 +183,9 @@ def dfs_solver(board, pieces, piece_id):
 	piece = pieces[piece_id - 1]
 	xb = piece.unit_xsize
 	yb = piece.unit_ysize
-	for x in range(board.board_size - xb + 1):
-		for y in range(board.board_size - yb + 1):
+	n = min([xb, yb])
+	for x in range(board.board_size-n+1):
+		for y in range(board.board_size-n+1):
 			loc = [x, y]
 			r = 0
 			while r < 4:
