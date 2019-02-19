@@ -1,7 +1,7 @@
 
 from queue import PriorityQueue
 from colored import fg, bg, attr
-import numpy as numpy
+import numpy as np
 
 
 
@@ -12,15 +12,15 @@ class Piece:
   	self.color = color
   	self.unit_list = unit_list
   	self.unit_count = len(unit_list)
-  	self.unit_xsize = max(x[0] for x in self.unit_list) + 1
-  	self.unit_ysize = max(x[1] for x in self.unit_list) + 1
+  	self.unit_xsize = max(p[0] for p in self.unit_list) + 1
+  	self.unit_ysize = max(p[1] for p in self.unit_list) + 1
   
   """
   		adjust the local coordinates of the puzzle piece
   """
   def zeroup(self):
-    xmin = min(x[0] for x in self.unit_list)
-    ymin = min(x[1] for x in self.unit_list)
+    xmin = min(p[0] for p in self.unit_list)
+    ymin = min(p[1] for p in self.unit_list)
     if min([xmin, ymin, 0]) != 0:
       if xmin < ymin:
         self.unit_list = [[t[0] - xmin, t[1]] for t in self.unit_list]
@@ -72,7 +72,8 @@ class Board:
 	def __init__(self, board=None, board_size=None, moves=0):
 
 		if board is None:
-			self.board = [[1 for i in range(4)] for j in range(4)]
+			self.board = np.ones((7,7), dtype=int)
+			# [[1 for i in range(7)] for j in range(7)]
 			self.board_size = 7
 		else:
 			self.board = board
@@ -139,7 +140,7 @@ class Board:
 		"""
 			returns copy of the current board
 		"""
-		return Board(self.board.copy(), self.board_size, self.moves+1, self)
+		return Board(self.board.copy(), self.board_size, self.moves+1)
 
 
 	def neighbours(self, pieces):
